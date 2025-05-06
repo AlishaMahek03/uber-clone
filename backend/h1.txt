@@ -1,0 +1,15 @@
+{
+    "fullname":{
+        "firstname":"test_captain_fname",
+        "lastname": "test_captain_lname"
+    },
+    "email": "test_test@345gmail.com",
+    "password": "test908765rtuvw",
+    "vehicle": {
+        "color":"blue",
+        "plate": "MH04789254",
+        "capacity": 4,
+        "vehicletypes": "car"
+    }
+
+}
