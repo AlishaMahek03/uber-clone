@@ -33,6 +33,9 @@ const Home = () => {
   const [dropoffSuggestions, setDropoffSuggestions] = useState([]);
   const [activefield, setActiveField] = useState(null);
 
+  //shwoing the vehicle panel fare
+  const [fare, setFare] = useState({});
+
   //handler for the pickup input field
   const handlepickupchange = async (e) => {
     setpickup(e.target.value);
@@ -71,7 +74,7 @@ const Home = () => {
       );
       setDropoffSuggestions(response.data);
     } catch (err) {
-      console.log(err);
+      //handle the error
     }
   };
 
@@ -159,6 +162,27 @@ const Home = () => {
     [waitingfordriver]
   );
 
+  //function to handle the click event of the find trip button
+  async function findTrip() {
+    setvehiclepanelopen(true);
+    setpanelopen(false);
+
+    try{
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/getfare`, {
+        params: {
+          pickup: pickup,
+          dropoff: dropoff,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      console.log(response.data);
+      setFare(response.data);
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <div className="h-screen relative overflow-hidden">
       <img
@@ -215,7 +239,7 @@ const Home = () => {
             />
           </form>
           <button
-            // onClick={findTrip}
+            onClick={findTrip}
             className="bg-black text-white px-4 py-2 rounded-lg  w-[50%] ml-35 mt-5"
           >
             Find Trip
@@ -238,9 +262,10 @@ const Home = () => {
       </div>
       <div
         ref={vehiclepanelref}
-        className="fixed z-10  bottom-0 bg-white w-full p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10 h-[55%]  bottom-0 bg-white w-full p-5 flex flex-col gap-5 translate-y-full"
       >
         <Vehiclepanel
+          fare={fare}
           confirmvehiclepanel={confirmvehiclepanel}
           setconfirmvehiclepanel={setconfirmvehiclepanel}
           setvehiclepanelopen={setvehiclepanelopen}
