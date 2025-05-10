@@ -2,12 +2,12 @@ const rideModel = require('../models/ride.model');
 const mapsService = require('./maps.service');
 const crypto = require('crypto');
 
-async function getfare(pickup, destination) {
-    if (!pickup || !destination) {
+async function getfare(pickup, dropoff) {
+    if (!pickup || !dropoff) {
         throw new Error('Pickup and destination are required');
     }
 
-    const distancetime = await mapsService.getDistanceAndTime(pickup, destination);
+    const distancetime = await mapsService.getDistanceAndTime(pickup, dropoff);
     if (!distancetime) {
         throw new Error('Distance and time not found');
     }
@@ -52,18 +52,17 @@ async function getfare(pickup, destination) {
 
     const fares = {};
     for (const vehicleType of ['car', 'motorcycle', 'auto']) {
-        fares[vehicleType] = {
-            amount: Math.round(
+        fares[vehicleType] = Math.round(
                 (baseFares[vehicleType] + 
                 (distance * ratePerKm[vehicleType]) + 
                 (duration * ratePerMinute[vehicleType])) * 100
-            ) / 100, // Round to two decimal places
-            currency: 'CAD'
-        };
+            ) / 100;
     }
    
     return fares;
 }
+
+module.exports.getFare = getfare;
 
 function getOTP(number) {
     const otp = crypto.randomInt(10 ** (number - 1), 10 ** number - 1);
@@ -88,9 +87,8 @@ module.exports.createRide = async (userId, pickup, dropoff, vehicleType) => {
         pickup,
         dropoff,
         otp, // Save the generated OTP in the ride object
-        fare: fare.amount, // Use the amount from the fare object
-        vehicleType,
-        currency: fare.currency // Save the currency in the ride model
+        fare: fare, // Use the amount from the fare object
+        vehicleType
     });
 
 

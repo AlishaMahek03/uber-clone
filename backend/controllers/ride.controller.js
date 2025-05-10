@@ -20,3 +20,18 @@ module.exports.createRide = async (req, res) => {
         res.status(500).json({ error: 'Failed to create ride' });
     }
 };
+
+module.exports.getFare = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    const { pickup, dropoff } = req.query;
+    try {
+        const fare = await rideservice.getFare(pickup, dropoff);
+        res.status(200).json(fare);
+    } catch (error) {
+        console.error('Error getting fare:', error);
+        res.status(500).json({ error: 'Failed to get fare' });
+    }
+};
