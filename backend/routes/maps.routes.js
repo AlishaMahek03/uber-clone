@@ -17,5 +17,5 @@ router.get('/getdistance-time',
     authMiddleware.authuser, mapcontroller.getDistanceAndTime);
 
 
-router.get('/suggestion_locationpanel', query('input').isString().isLength({ min: 3 }).withMessage('Input must be a string with at least 2 characters'), authMiddleware.authuser, mapcontroller.suggestionLocationPanel);
+router.get('/suggestion_locationpanel', query('input').isString().withMessage('Input must be a string with at least 2 characters'), authMiddleware.authuser, mapcontroller.suggestionLocationPanel);
 module.exports = router;

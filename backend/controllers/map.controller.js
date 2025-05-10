@@ -37,6 +37,7 @@ module.exports.suggestionLocationPanel = async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     const {input} = req.query;
+    console.log("Input received:", input);
     try {
         const suggestions = await mapsService.suggestionLocationPanel(input);
         res.status(200).json(suggestions);
