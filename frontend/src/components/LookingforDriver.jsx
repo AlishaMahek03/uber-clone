@@ -1,6 +1,8 @@
 import React from 'react'
+import { useState , useEffect} from 'react';
 
-const LookingforDriver = ({setlookingfordriver}) => {
+const LookingforDriver = ({setlookingfordriver, pickup, dropoff}) => {
+  
   return (
     <div className="relative">
       <h5 onClick={()=>{setlookingfordriver(false)}} className="absolute top-3 right-0">
@@ -18,7 +20,7 @@ const LookingforDriver = ({setlookingfordriver}) => {
           <i className="ri-map-pin-2-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
-           Shamshabad, Hyderabad, Telangana 500409, India
+           {pickup}
         </h4>
       </div>
 
@@ -27,11 +29,12 @@ const LookingforDriver = ({setlookingfordriver}) => {
         <i className="ri-square-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
-           Shamshabad, Hyderabad, Telangana 500409, India
+          {dropoff}
         </h4>
       </div>
 
-      <div className="absolute top-90 flex ml-50 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 w-[25%] bg-red-300 text-xl">$30</div>
+      
+      
 
     </div>
   )

@@ -36,6 +36,9 @@ const Home = () => {
   //shwoing the vehicle panel fare
   const [fare, setFare] = useState({});
 
+  //updating the vehicle type
+  const [selectvehicleType, setselectVehicleType] = useState("");
+
   //handler for the pickup input field
   const handlepickupchange = async (e) => {
     setpickup(e.target.value);
@@ -77,6 +80,24 @@ const Home = () => {
       //handle the error
     }
   };
+
+  //create ride function
+  async function createRide(vehicleType) {
+    const response  = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/rides/create`,
+      {
+        pickup: pickup,
+        dropoff: dropoff,
+        vehicleType: vehicleType,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    console.log(response.data);
+  }
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -266,6 +287,7 @@ const Home = () => {
       >
         <Vehiclepanel
           fare={fare}
+          setselectVehicleType={setselectVehicleType}
           confirmvehiclepanel={confirmvehiclepanel}
           setconfirmvehiclepanel={setconfirmvehiclepanel}
           setvehiclepanelopen={setvehiclepanelopen}
@@ -277,16 +299,23 @@ const Home = () => {
         className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
       >
         <Confirmedvehicle
+          
+        createRide={createRide}
+          pickup={pickup}
+          dropoff={dropoff}
+          fare={fare}
+          selectvehicleType={selectvehicleType}
           setconfirmvehiclepanel={setconfirmvehiclepanel}
           setlookingfordriver={setlookingfordriver}
+          setvehiclepanelopen={setvehiclepanelopen}
         />
       </div>
 
       <div
         ref={lookingfordriverref}
-        className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10  bottom-0 bg-white w-full h-[45%] p-5 flex flex-col gap-5 translate-y-full"
       >
-        <LookingforDriver setlookingfordriver={setlookingfordriver} />
+        <LookingforDriver setlookingfordriver={setlookingfordriver} pickup={pickup} dropoff={dropoff} fare={fare} selectvehicleType={selectvehicleType} />
       </div>
 
       <div
