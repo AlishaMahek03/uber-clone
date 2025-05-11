@@ -7,7 +7,6 @@ module.exports.createRide = async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
     }
     const  userId  = req.user._id.toString();
-    console.log(userId);
     if (!userId) {
         return res.status(401).json({ error: 'User Id Not found!' });
     }
