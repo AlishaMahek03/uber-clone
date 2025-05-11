@@ -1,4 +1,4 @@
-import {React, useState, useRef} from "react";
+import {React, useState, useRef, useContext} from "react";
 import { Link } from "react-router-dom";
 import {useGSAP} from "@gsap/react";
 import 'remixicon/fonts/remixicon.css'
@@ -7,8 +7,15 @@ import CaptainDetails from "../components/CaptainDetails";
 import Ridepopup from "../components/Ridepopup";
 import Confirmridepopup from "../components/Confirmridepopup";
 
+import { CaptainDataContext } from "../context/Captaincontext";
+
+
+
+
 const CaptainHome = () => {
 
+  const {captain} = useContext(CaptainDataContext);
+  console.log(captain);
   //ride popup panel
   const [ridePopup, setRidePopup] = useState(true);
   const ridepopupref = useRef(null);
@@ -65,7 +72,7 @@ const CaptainHome = () => {
       </div>
       {/* //The below half of the screen */}
       <div className="h-1/2  relative">
-        <CaptainDetails/>
+        <CaptainDetails captain={captain}/>
         <div ref={ridepopupref}  className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full">
               <Ridepopup setconfirmride={setconfirmride} setRidePopup={setRidePopup}/>
         </div>

@@ -15,5 +15,5 @@ createRoot(document.getElementById('root')).render(
         </Userdata>
     </CaptainContext>
       
-  </StrictMode>,
+  </StrictMode>
 )

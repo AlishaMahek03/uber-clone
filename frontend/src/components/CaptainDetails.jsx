@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CaptainDetails = () => {
+const CaptainDetails = ({captain}) => {
   return (
     <div>
       <div>
@@ -15,15 +15,15 @@ const CaptainDetails = () => {
           alt=""
         />
         <h2 className="absolute top-2 right-3 text-xl text-gray-500">
-          Santosh
+          {captain.fullname.firstname}  {captain.fullname.lastname}
         </h2>
 
         <h3 className="absolute top-9 right-3 text-2xl font-bold ">
-          KA15AK00-00
+          {captain.vehicle.plate}
         </h3>
 
         <p className=" absolute top-18 right-3 text-xl text-gray-500">
-          White Suzuki S-Presso LXI
+          {captain.vehicle.color} {captain.vehicle.vehicletypes}
         </p>
 
         <p className="absolute right-3 top-29 text-xl text-gray-500">★ 4.9</p>

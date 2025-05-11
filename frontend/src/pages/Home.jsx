@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import "remixicon/fonts/remixicon.css";
 import axios from "axios";
@@ -38,6 +38,11 @@ const Home = () => {
 
   //updating the vehicle type
   const [selectvehicleType, setselectVehicleType] = useState("");
+  
+
+
+  
+  
 
   //handler for the pickup input field
   const handlepickupchange = async (e) => {
