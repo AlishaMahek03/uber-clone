@@ -1,5 +1,6 @@
 const mapsService = require('../services/maps.service');
 const {validationResult} = require('express-validator');
+const captainModel = require('../models/captain.model');
 
 module.exports.getCoordinates = async (req, res) => {
     const errors = validationResult(req);
@@ -46,3 +47,5 @@ module.exports.suggestionLocationPanel = async (req, res) => {
         res.status(404).json({ error: 'Suggestions not found' });
     }
 }
+
+

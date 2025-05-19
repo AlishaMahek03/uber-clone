@@ -1,24 +1,28 @@
 const axios = require('axios');
+const captainModel = require("../models/captain.model");
 
 module.exports.getAddresscoordinates = async (address) => {
     try {
+        console.log('Calling Geocode API for address:', address); // Add this
         const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
             params: {
                 address: address,
                 key: process.env.GOOGLE_MAPS_API_KEY // Make sure to set this in your environment variables
             }
         });
+        console.log('Geo code  response:', response.data);
 
         if (response.data.status === 'OK' && response.data.results.length > 0) {
             const location = response.data.results[0].geometry.location;
             return {
-                lat: location.lat,
+                ltd: location.lat,
                 lng: location.lng
             };
         } else {
             throw new Error('No results found for the given address');
         }
-    } catch (error) {
+    }  catch (error) {
+        console.log("GetAddress coordinates is the problem", error); // Log full error
         throw new Error(`Error getting coordinates: ${error.message}`);
     }
 };
@@ -35,9 +39,9 @@ module.exports.getDistanceAndTime = async (origin, destination) => {
 
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${destination}&key=${apikey}`;
 
-
     try {
         const response = await axios.get(url);
+        
         if (response.data.status === 'OK') {
             const element = response.data.rows[0].elements[0];
             if (element.status === 'OK') {
@@ -78,3 +82,18 @@ module.exports.suggestionLocationPanel = async (input) => {
         throw new Error(`Error getting suggestions: ${error.message}`);
     }
 };
+
+
+module.exports.getCaptainRadius = async(ltd, lng, radius)=>{
+
+    //radius in km
+    const captains = await captainModel.find({
+        location:{
+            $geoWithin:{
+                $centerSphere: [[ltd, lng], radius/6371]
+            }
+        }
+    })
+
+    return captains;
+}

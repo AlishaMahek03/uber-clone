@@ -20,6 +20,10 @@ module.exports.authuser = async (req, res, next) => {
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await usermodel.findById(decoded._id);
+            if (!user) {
+                return res.status(401).json({ message: 'Unauthorized: user not found' });
+}
+
 
         req.user = user;
         return next();
@@ -40,7 +44,12 @@ module.exports.authcaptain = async (req, res, next) => {
     }
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded);
         const captain = await captainmodel.findById(decoded._id);
+        console.log(captain)
+        if (!captain) {
+            return res.status(401).json({ message:'Unauthorized: captain not found : ian from auth middle ware brooo' });
+        }
 
         req.captain = captain;
         return next();

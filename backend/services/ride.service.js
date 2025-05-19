@@ -1,6 +1,9 @@
+const { error } = require('console');
 const rideModel = require('../models/ride.model');
+const captainmodel = require('../models/captain.model')
 const mapsService = require('./maps.service');
 const crypto = require('crypto');
+const { sendMessageToSocketId } = require('../socket');
 
 async function getfare(pickup, dropoff) {
     if (!pickup || !dropoff) {
@@ -94,3 +97,96 @@ module.exports.createRide = async (userId, pickup, dropoff, vehicleType) => {
 
     return await ride.save();
 };
+
+
+module.exports.confirmride = async({rideId, captain})=>{
+
+    if(!rideId){
+        throw new Error('Ride Id is required!')
+    }
+    if(!captain || !captain._id){
+        throw new Error('Captain is required!')
+    }
+    // ...
+
+
+    await rideModel.findOneAndUpdate({
+        _id: rideId
+    }, {
+        status: 'accepted',
+        captainId: captain._id
+    })
+
+     const ride = await rideModel.findOne({
+        _id: rideId
+    }).populate('userId').populate('captainId').select('+otp');
+
+    if(!ride){
+        throw new error('Ride Not Found!')
+    }
+
+
+    return ride;
+}
+
+module.exports.startRide = async({rideId, otp, captain})=>{
+    if(!otp || !rideId){
+        throw new Error("Ride Id and OTP are required!");
+    }
+    const ride = await rideModel.findOne({
+        _id:rideId
+    }).populate('userId').populate('captainId').select('+otp');
+
+
+    if(!ride){
+        throw new Error("Ride not found!");
+    }
+
+    if(ride.status !== 'accepted'){
+        throw new Error('Ride not accepted!');
+    }
+    if(ride.otp !== otp){
+         throw new Error('INVALID OTP!');
+    }
+
+    await rideModel.findOneAndUpdate({
+        _id:rideId
+    }, {
+        status: 'ongoing'
+    })
+
+    sendMessageToSocketId(ride.userId.socketId, {
+        event:'ride-started',
+        data: ride
+    })
+
+    return ride;
+}
+module.exports.endride = async({rideId, captain})=>{
+    if(!rideId){
+        throw new Error("Ride Id is required!");
+    }
+    const ride = await rideModel.findOne({
+        _id:rideId,
+        captainId:captain._id
+    }).populate('userId').populate('captainId');
+
+
+    if(!ride){
+        throw new Error("Ride not found!");
+    }
+
+
+    await rideModel.findOneAndUpdate({
+        _id:rideId
+    }, {
+        status: 'completed'
+    })
+
+    // Emit event to user
+    sendMessageToSocketId(ride.userId.socketId, {
+        event: 'ride-ended'
+    });
+
+    return ride;
+}
