@@ -44,6 +44,7 @@ const response = await axios.post(import.meta.env.VITE_BASE_URL + "/captains/reg
       const data = response.data;
       setCaptain(data.captain);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("captain", JSON.stringify(data.captain));
       alert("Captain Created Successfully");
       navigate("/captain-home");
     } else {

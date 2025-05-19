@@ -8,6 +8,10 @@ import Vehiclepanel from "../components/Vehiclepanel";
 import Confirmedvehicle from "../components/Confirmedvehicle";
 import LookingforDriver from "../components/LookingforDriver";
 import WaitingforDriver from "../components/WaitingforDriver";
+import { SocketContext } from '../context/SocketContext';
+import { userdatacontext } from "../context/Userdata";
+import { useNavigate } from "react-router-dom";
+
 const Home = () => {
   const [pickup, setpickup] = useState("");
   const [dropoff, setdropoff] = useState("");
@@ -33,16 +37,44 @@ const Home = () => {
   const [dropoffSuggestions, setDropoffSuggestions] = useState([]);
   const [activefield, setActiveField] = useState(null);
 
+  //ride panel
+  const [ride, setride] = useState(null);
+
   //shwoing the vehicle panel fare
   const [fare, setFare] = useState({});
 
   //updating the vehicle type
   const [selectvehicleType, setselectVehicleType] = useState("");
-  
+
+  const navigate = useNavigate();
 
 
-  
-  
+  const { socket } = useContext(SocketContext);
+  const { user } = useContext(userdatacontext);
+
+    useEffect(() => {
+        socket.emit("join", { userType: "user", userId: user._id })
+    }, [ user ])
+
+
+    socket.on('ride-confirmed', (data)=>{
+      console.log('HI MYSELF DATA FROM RIDE SOCKET:', data);
+      setwaitingfordriver(true);
+      setlookingfordriver(false);
+      setride(data);
+    })
+
+   useEffect(() => {
+  // ...other socket logic...
+  const handleRideStarted = (ride) => {
+    setwaitingfordriver(false);
+    navigate('/riding', {state: {ride: ride}});
+  };
+  socket.on('ride-started', handleRideStarted);
+  return () => socket.off('ride-started', handleRideStarted);
+}, [socket, navigate]);
+
+
 
   //handler for the pickup input field
   const handlepickupchange = async (e) => {
@@ -88,7 +120,7 @@ const Home = () => {
 
   //create ride function
   async function createRide(vehicleType) {
-    const response  = await axios.post(
+    const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/rides/create`,
       {
         pickup: pickup,
@@ -193,19 +225,22 @@ const Home = () => {
     setvehiclepanelopen(true);
     setpanelopen(false);
 
-    try{
-      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/getfare`, {
-        params: {
-          pickup: pickup,
-          dropoff: dropoff,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/rides/getfare`,
+        {
+          params: {
+            pickup: pickup,
+            dropoff: dropoff,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       console.log(response.data);
       setFare(response.data);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
@@ -253,6 +288,7 @@ const Home = () => {
               type="text"
               placeholder="Add a Pickup Location"
             />
+
             <input
               onClick={() => {
                 setpanelopen(true), setActiveField("dropoff");
@@ -304,8 +340,7 @@ const Home = () => {
         className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
       >
         <Confirmedvehicle
-          
-        createRide={createRide}
+          createRide={createRide}
           pickup={pickup}
           dropoff={dropoff}
           fare={fare}
@@ -320,14 +355,20 @@ const Home = () => {
         ref={lookingfordriverref}
         className="fixed z-10  bottom-0 bg-white w-full h-[45%] p-5 flex flex-col gap-5 translate-y-full"
       >
-        <LookingforDriver setlookingfordriver={setlookingfordriver} pickup={pickup} dropoff={dropoff} fare={fare} selectvehicleType={selectvehicleType} />
+        <LookingforDriver
+          setlookingfordriver={setlookingfordriver}
+          pickup={pickup}
+          dropoff={dropoff}
+          fare={fare}
+          selectvehicleType={selectvehicleType}
+        />
       </div>
 
       <div
         ref={waitingfordriverref}
         className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
       >
-        <WaitingforDriver setwaitingfordriver={setwaitingfordriver} />
+        <WaitingforDriver ride={ride} setwaitingfordriver={setwaitingfordriver} />
       </div>
     </div>
   );

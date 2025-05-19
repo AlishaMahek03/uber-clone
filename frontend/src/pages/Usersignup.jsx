@@ -13,7 +13,7 @@ const Usersignup = () => {
   const [usersignupdata, setusersignupdata] = useState({});
   const navigate = useNavigate();
 
-  const [user, setuser] = useContext(userdatacontext);
+  const {user, setuser} = useContext(userdatacontext);
 
   const handle_submit = async(e) => {
     e.preventDefault();
@@ -33,7 +33,8 @@ const Usersignup = () => {
       const data = response.data;
       setuser(data.user);
       localStorage.setItem("token", data.token);
-      navigate("/home");
+      localStorage.setItem("user", JSON.stringify(data.user)); // Save user data in local storage
+      navigate("/home");z
     }
 
     setfullname({});

@@ -23,6 +23,8 @@ const Captainlogin = () => {
       const data = response.data;
       setCaptain(data.captain);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("captain", JSON.stringify(data.captain));
+      console.log(data.captain);
       alert("Captain Logged In Successfully");
       navigate("/captain-home");
     } else {

@@ -10,7 +10,7 @@ const Userlogin = () => {
 
   const navigate = useNavigate();
 
-  const [user, setuser] = useContext(userdatacontext);
+  const {user, setuser} = useContext(userdatacontext);
   
 
   const handle_submit = async(e) => {
@@ -24,7 +24,9 @@ const Userlogin = () => {
     if (response.status === 200) {
       const data = response.data;
       setuser(data.user);
+      console.log(user)
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user)); // Save user data in local storage
       navigate("/home");
     }
     setemail("");

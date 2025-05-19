@@ -2,7 +2,11 @@ import { useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-const Confirmridepopup = ({ setconfirmride, setRidePopup }) => {
+import axios from "axios";
+const Confirmridepopup = ({ setconfirmride, setRidePopup, ride }) => {
+  if (!ride || !ride.userId || !ride.userId.fullname) {
+    return <div>Loading...</div>;
+  }
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
 
@@ -10,12 +14,26 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup }) => {
     setOtp(e.target.value);
   };
 
-  const handleSubmit =(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/rides/start-ride`,
+      {
+        params: { rideId: ride._id, otp: otp },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      setconfirmride(false);
+      navigate("/captain/riding", {state: {ride:ride}});
+    }
     // Handle OTP submission logic here
     console.log("OTP submitted:", otp);
     // Navigate to another route after submission
-    navigate("/captain/riding");
   };
   return (
     <div className="relative h-screen w-screen">
@@ -35,28 +53,30 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup }) => {
             className="h-25 p-2 "
           />
           <div className="flex justify-between w-[70%] items-center">
-            <h2 className="text-2xl p-2 font-medium">Esther Berry</h2>
-            <p className="text-xl p-3">$25.00</p>
+            <h2 className="text-2xl p-2 font-medium">
+              {ride.userId.fullname.firstname +
+                " " +
+                ride.userId.fullname.lastname}
+            </h2>
+            <p className="text-xl p-3">${ride.fare}</p>
           </div>
         </div>
         <hr />
         <div className="pickup m-5  h-12 w-[90%] mt-5 ml-5">
           <h2 className="text-gray-600">Pickup:</h2>
-          <h3 className="ml-2 text-xl font-medium">99854 Swift Village</h3>
+          <h3 className="ml-2 text-xl font-medium">{ride.pickup}</h3>
         </div>
         <hr />
-        <div className="destination m-5  h-12 w-[90%] mt-5 ml-5">
+        <div className="destination m-10  h-12 w-[90%] mt-5 ml-5">
           <h2 className="text-gray-600">Drop off:</h2>
-          <h3 className="ml-2 text-xl font-medium">
-            105 William, St.Chicago, US
-          </h3>
+          <h3 className="ml-2 text-xl font-medium">{ride.dropoff}</h3>
         </div>
         <hr />
-        <div className="flex  flex-col justify-between mt-5 px-4">
+        <div className="flex  flex-col justify-between mt-8 px-4">
           <h4 className="text-gray-600">Trip Fare</h4>
           <div className="flex justify-between mt-1 px-4">
             <p>Apple pay : </p>
-            <p>$15.00</p>
+            <p>${ride.fare + 10}</p>
           </div>
           <div className="flex justify-between mt-1 px-4">
             <p>Discount: </p>
@@ -64,11 +84,11 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup }) => {
           </div>
           <div className="flex justify-between mt-1 px-4 ">
             <p>Paid Amount : </p>
-            <p>$25.00</p>
+            <p>${ride.fare}</p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-10 px-4 py-3 ml-2">
+        <form onSubmit={handleSubmit} className="mt-6 px-4 py-3 ml-2">
           <input
             value={otp}
             onChange={handleChange}
@@ -76,7 +96,7 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup }) => {
             className="text-start ml-5 font-mono w-[90%] bg-gray-200 p-5"
             placeholder="Enter OTP"
           />
-          <div className="button mt-10  flex justify-center items-center text-center">
+          <div className="button mt-6  flex justify-center items-center text-center">
             <button
               to={"/captain/riding"}
               type="submit"

@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
+const Opendropffpanel = ({ setOpendropoffpanel, rideData }) => {
+  const navigate = useNavigate();
+   async function endRide() {
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/end-ride`, {
 
-const Opendropffpanel = ({ setOpendropoffpanel }) => {
-  
+            rideId: rideData._id
+
+
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        if (response.status === 200) {
+            navigate('/captain-home')
+        }
+
+    }
 
   return (
     <div className="relative h-screen w-screen">
@@ -23,26 +40,26 @@ const Opendropffpanel = ({ setOpendropoffpanel }) => {
             className="h-25 p-2 "
           />
           <div className="flex justify-between w-[70%] items-center">
-            <h2 className="text-2xl p-2 font-medium">Esther Berry</h2>
-            <p className="text-xl p-3">$25.00</p>
+            <h2 className="text-2xl p-2 font-medium">{rideData?.userId.fullname.firstname+" "+rideData?.userId.fullname.lastname}</h2>
+            <p className="text-xl p-3">${rideData?.fare}</p>
           </div>
         </div>
         <hr />
         <div className="pickup m-5 h-12 w-[90%] mt-5 ml-5">
           <h2 className="text-gray-600">Pickup:</h2>
-          <h3 className="ml-2 text-xl font-medium">99854 Swift Village</h3>
+          <h3 className="ml-2 text-xl font-medium">{rideData?.pickup}</h3>
         </div>
         <hr />
         <div className="destination m-5 h-12 w-[90%] mt-5 ml-5">
           <h2 className="text-gray-600">Drop off:</h2>
-          <h3 className="ml-2 text-xl font-medium">105 William, St.Chicago, US</h3>
+          <h3 className="ml-2 text-xl font-medium">{rideData?.dropoff}</h3>
         </div>
         <hr />
         <div className="flex m-5 flex-col justify-between mt-5 px-4">
           <h4 className="text-gray-600">Trip Fare</h4>
           <div className="flex justify-between mt-1 px-4">
             <p>Apple pay :</p>
-            <p>$15.00</p>
+            <p>${rideData?.fare+10}</p>
           </div>
           <div className="flex justify-between mt-1 px-4">
             <p>Discount:</p>
@@ -50,19 +67,20 @@ const Opendropffpanel = ({ setOpendropoffpanel }) => {
           </div>
           <div className="flex justify-between mt-1 px-4 ">
             <p>Paid Amount :</p>
-            <p>$25.00</p>
+            <p>${rideData?.fare}</p>
           </div>
         </div>
         <hr />
 
         <div className="button mt-10  flex justify-center items-center text-center">
-            <Link
-            to={"/captain-home"}
+            <button
+
+            onClick={endRide}
               
               className="w-[70%] border py-4 bg-yellow-500 text-xl font-semibold"
             >
               Finish Ride!
-            </Link>
+            </button>
           </div>
 
         

@@ -1,5 +1,5 @@
 import {React, useState, useRef} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Opendropffpanel from '../components/Opendropffpanel'
 import {useGSAP} from "@gsap/react";
 import 'remixicon/fonts/remixicon.css'
@@ -7,6 +7,10 @@ import gsap from "gsap";
 const CaptainRiding = () => {
   const [opendropoffpanel, setOpendropoffpanel] = useState(false)
   const opnedropoffpanelref = useRef(null)
+
+  const location = useLocation();
+  const rideData = location.state?.ride;
+  console.log(rideData)
 
   //first animation for the first panel
   useGSAP(function(){
@@ -42,7 +46,7 @@ const CaptainRiding = () => {
             <img src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp" alt=""  className="h-25 p-2 border-2 mt-2 ml-2 rounded-xl"/>
             <div className='mt-8 ml-2'>
                 <h2 className="text-gray-600">Picking up:</h2>
-                <h3 className="ml-2 text-xl font-medium">99854 Swift Village</h3>
+                <h3 className="ml-2 text-xl font-medium">{rideData?.pickup}</h3>
             </div>
 
             <div className="button mt-10 ml-15">
@@ -54,7 +58,7 @@ const CaptainRiding = () => {
         </div>
 
         <div ref={opnedropoffpanelref}  className="fixed z-10  bottom-0 bg-white w-full h-[80%] p-5 flex flex-col gap-5 translate-y-full">
-              <Opendropffpanel setOpendropoffpanel={setOpendropoffpanel}/>
+              <Opendropffpanel rideData={rideData} setOpendropoffpanel={setOpendropoffpanel}/>
         </div>
       </div>
       

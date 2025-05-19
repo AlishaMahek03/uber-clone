@@ -1,6 +1,7 @@
 import React from 'react'
 
 const CaptainDetails = ({captain}) => {
+  if (!captain) return null; 
   return (
     <div>
       <div>

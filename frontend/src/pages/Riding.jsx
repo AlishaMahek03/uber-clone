@@ -1,7 +1,19 @@
 import React from "react";
-import {Link} from "react-router-dom";
-
+import {Link, useLocation} from "react-router-dom";
+import { useEffect , useContext} from "react";
+import { SocketContext } from "../context/SocketContext";
+import { useNavigate } from "react-router-dom";
 const Riding = () => {
+  const location = useLocation();
+  const rideData = location.state?.ride;
+  console.log(rideData)
+  const {socket} = useContext(SocketContext);
+  const navigate = useNavigate();
+
+  socket.on('ride-ended',()=> {
+    navigate('/home');
+  })
+
   return (
     <div className="h-screen">
         <Link to={
@@ -23,15 +35,15 @@ const Riding = () => {
         alt=""
       />
         <h2 className="absolute top-2 right-3 text-xl text-gray-500">
-          Santosh
+          {rideData?.captainId.fullname.firstname + " "+ rideData?.captainId.fullname.lastname};
         </h2>
 
         <h3 className="absolute top-9 right-3 text-2xl font-bold ">
-          KA15AK00-00
+          {rideData?.captainId.vehicle.plate}
         </h3>
 
         <p className=" absolute top-18 right-3 text-xl text-gray-500">
-          White Suzuki S-Presso LXI
+          {rideData?.captainId.vehicle.color + " "+ rideData?.captainId.vehicle.vehicletypes}
         </p>
 
         <p className="absolute right-3 top-29 text-xl text-gray-500">★ 4.9</p>
@@ -42,7 +54,7 @@ const Riding = () => {
           <i className="ri-map-pin-2-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
-           Shamshabad, Hyderabad, Telangana 500409, India
+           {rideData?.pickup}
         </h4>
       </div>
 
@@ -51,11 +63,11 @@ const Riding = () => {
         <i className="ri-square-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
-           Shamshabad, Hyderabad, Telangana 500409, India
+           {rideData?.dropoff}
         </h4>
       </div>
       <div className="flex  items-center">
-      <button className=" w-50 absolute top-92 left-10 border border-[#eee] shadow-lg bg-red-400 font-semibold text-white text-xl px-5 py-2">$30</button>
+      <button className=" w-50 absolute top-92 left-10 border border-[#eee] shadow-lg bg-red-400 font-semibold text-white text-xl px-5 py-2">${rideData?.fare}</button>
       <button className=" w-50 absolute top-92  border border-[#eee] shadow-lg bg-green-400 font-semibold text-white text-xl px-5 py-2">Make a payment</button>
       </div>
         
