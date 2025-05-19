@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- No background rectangle -->
+  
+  <!-- Clickable link wrapping the whole logo -->
+  <a href="https://www.transitly.com" target="_blank">
+    <!-- Main logo text in bold, simple sans-serif font -->
+    <text x="200" y="210" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" text-anchor="middle" fill="#000000">Transitly</text>
+    
+    <!-- Optional accent element - a simple horizontal line -->
+    <line x1="130" y1="230" x2="270" y2="230" stroke="#000000" stroke-width="4" />
+  </a>
+</svg>

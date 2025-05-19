@@ -38,6 +38,12 @@ const Confirmedvehicle = ({
         src="https://static.vecteezy.com/system/resources/thumbnails/041/035/565/small_2x/white-car-isolated-on-white-background-vector.jpg"
         alt=""
       />
+      <div className="flex items-center">
+        <h2 className="absolute top-13 flex ml-120 gap-2 mt-10 text-3xl">Fare:</h2>
+        <div className="absolute top-10 flex ml-140 gap-2 mt-10  border-2 border-gray-100  active:border-black justify-center items-center p-3 w-[25%] bg-yellow-500 text-2xl font-bold">
+        ${confirmfare}
+      </div>
+      </div>
       <h4 className="text-3xl p-3 font-medium">Confirm your Ride!</h4>
       <div className="line h-19 absolute top-60 z-30 left-7 rounded-full w-1 bg-gray-700"></div>
       <div className="absolute top-50 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 my-5 w-[95%] bg-blue-100">
@@ -54,11 +60,9 @@ const Confirmedvehicle = ({
         <h4 className="w-85 ml-2 text-xl">{dropoff}</h4>
       </div>
 
-      <div className="absolute top-90 flex ml-50 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 w-[25%] bg-red-300 text-xl">
-        ${confirmfare}
-      </div>
+      
 
-      <div className="absolute top-104 flex ml-20 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center w-[75%] bg-green-700">
+      <div className="absolute top-96 flex ml-45 gap-2  border-2 border-gray-100 active:border-black rounded-xl justify-center items-center w-[55%] bg-green-700">
         <button
           onClick={() => {
             setlookingfordriver(true);
@@ -66,7 +70,7 @@ const Confirmedvehicle = ({
             setconfirmvehiclepanel(false);
             setvehiclepanelopen(false);
           }}
-          className="p-5 mt-0 text-white font-bold text-xl"
+          className="p-5  text-white font-bold text-2xl"
         >
           Confirm your ride
         </button>

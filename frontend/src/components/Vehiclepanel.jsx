@@ -19,12 +19,13 @@ const Vehiclepanel = ({
       </h5>
 
       <h4 className="text-3xl p-3 font-medium">Choose a Ride!</h4>
+      
       <div
         onClick={() => {
           setconfirmvehiclepanel(true),
           setselectVehicleType("car");
         }}
-        className="border-2 border-[#eee] w-full flex items-start   active:border-2 active:border-[#000000] rounded-lg  p-3"
+        className="border-2 border-[#eee] w-[90%] flex items-start justify-around ml-5  active:border-2 active:border-[#000000] rounded-lg  p-3"
       >
         <img
           className="h-20 w-20"
@@ -41,14 +42,14 @@ const Vehiclepanel = ({
           <h5>2 min away ..</h5>
           <p className="text-[#666262]">Affordable, compact rides</p>
         </div>
-        <h2 className="ml-33 w-[2%] text-2xl flex "> ${fare.car}</h2>
+        <h2 className=" w-[2%] text-2xl flex "> ${fare.car}</h2>
       </div>
       <div
         onClick={() => {
           setconfirmvehiclepanel(true),
           setselectVehicleType("motorcycle");
         }}
-        className="border-2 border-[#eee] w-full flex items-start mt-2  active:border-2 active:border-[#000000] rounded-lg  p-3"
+        className="border-2 border-[#eee] w-[90%] flex items-start justify-around ml-5 mt-2  active:border-2 active:border-[#000000] rounded-lg  p-3"
       >
         <img
           className="h-20 w-20"
@@ -65,14 +66,14 @@ const Vehiclepanel = ({
           <h5>3 min away ..</h5>
           <p className="text-[#666262]">Affordable, motorcycle rides</p>
         </div>
-        <h2 className="ml-30 w-[2%] text-2xl">${fare.motorcycle}</h2>
+        <h2 className="w-[2%] text-2xl">${fare.motorcycle}</h2>
       </div>
       <div
         onClick={() => {
           setconfirmvehiclepanel(true),
           setselectVehicleType("auto");
         }}
-        className="mt-2 border-2 border-[#eee] w-full flex items-start   active:border-2 active:border-[#000000] rounded-lg  p-3"
+        className="mt-2 border-2 border-[#eee] w-[90%] flex items-start justify-around ml-5  active:border-2 active:border-[#000000] rounded-lg  p-3"
       >
         <img
           className="h-15 w-20"
@@ -89,9 +90,9 @@ const Vehiclepanel = ({
           <h5>1 min away ..</h5>
           <p className="text-[#666262]">Affordable, Auto rides</p>
         </div>
-        <h2 className="ml-42 w-[2%] text-2xl">${fare.auto}</h2>
+        <h2 className=" w-[2%] text-2xl">${fare.auto}</h2>
       </div>
-    </div>
+      </div>
   );
 };
 

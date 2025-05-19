@@ -43,9 +43,9 @@ const WaitingforDriver = ({setwaitingfordriver, ride}) => {
            {ride?.pickup}
         </h4>
         </div>
-         <div className='flex justify-start ml-8  items-center'>
+         <div className='flex justify-start  items-center'>
         <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-        <i className="ri-square-fill text-2xl"></i>
+        <i className="ri-map-pin-2-line text-2xl"></i>
         </h2>
         <h4 className="w-full ml-2 text-xl">
            {ride?.dropoff}

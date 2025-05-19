@@ -37,6 +37,7 @@ const Userlogin = () => {
       <div className="h-screen w-screen m-0 p-0">
         <div>
         <img className='w-55 ' src="https://static.vecteezy.com/system/resources/previews/027/127/451/non_2x/uber-logo-uber-icon-transparent-free-png.png" alt="" />
+        <h2 className="mt-5 ml-5 text-4xl">Let’s Get You Signed In</h2>
         <form onSubmit={(e)=>{handle_submit(e)}} className="flex flex-col ml-5 gap-5  h-screen">
           <h3 className="text-2xl mt-10 font-medium">What's your email?</h3>
           <input
@@ -58,14 +59,18 @@ const Userlogin = () => {
             required
             className="bg-[#eeeeee] text-xl h-12 w-[90%] text-start px-4"
           />
-          <button className="bg-black text-2xl border rounded-xl w-[90%] px-5 py-2 text-white mt-2">
+
+          <div className="flex items-center justify-center flex-col gap-7">
+          <button className="bg-black text-2xl border  rounded-xl w-[50%] px-5 py-3 text-white mt-2">
             Login
           </button>
 
-          <p className="text-xl font-bold text-center">New here? <Link to='/signup' className="text-blue-500 underline px-3">Create new Account!</Link></p>
-          <Link to='/captain-login' className="bg-[#359b68] text-2xl border rounded-xl w-[90%] px-5 py-2 text-center text-white font-medium mt-2">
+          <p className="text-xl font-bold text-center">New here? <Link to='/signup' className="text-blue-500 underline px-3 text-xl">Create new Account!</Link></p>
+          <Link to='/captain-login' className="bg-[#359b68] text-2xl border rounded-xl  w-[50%] px-5 py-3 text-center text-white font-medium mt-2">
               Sign in as Captain
             </Link>
+
+            </div>
         </form>
         
         </div>

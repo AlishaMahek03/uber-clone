@@ -4,6 +4,7 @@ import Opendropffpanel from '../components/Opendropffpanel'
 import {useGSAP} from "@gsap/react";
 import 'remixicon/fonts/remixicon.css'
 import gsap from "gsap";
+import LiveTracking from '../components/LiveTracking';
 const CaptainRiding = () => {
   const [opendropoffpanel, setOpendropoffpanel] = useState(false)
   const opnedropoffpanelref = useRef(null)
@@ -32,21 +33,17 @@ const CaptainRiding = () => {
             <i className="ri-home-4-fill text-xl font-medium"></i>
         </Link>
       <div className="h-[100%] relative">
-        <img
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="h-30 w-full flex gap-5   border rounded-t-xl absolute bottom-0 shadow-lg bg-[#eee]">
+        <LiveTracking/>
+        <div className="h-35 w-full flex gap-5   border rounded-t-xl absolute bottom-0 shadow-lg bg-[#eee]">
         <h5  onClick={() => {
             setOpendropoffpanel(true);
-          }} className="absolute top-0 right-58">
+          }} className="absolute top-0 right-88">
           <i className="ri-arrow-up-wide-line text-4xl text-gray-800"></i>
         </h5>
-            <img src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp" alt=""  className="h-25 p-2 border-2 mt-2 ml-2 rounded-xl"/>
-            <div className='mt-8 ml-2'>
-                <h2 className="text-gray-600">Picking up:</h2>
-                <h3 className="ml-2 text-xl font-medium">{rideData?.pickup}</h3>
+            <img src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp" alt=""  className="h-25 p-2 border-2 mt-6 ml-2 rounded-xl"/>
+            <div className='mt-6 ml-2 w-90'>
+                <h2 className="text-gray-600 font-bold">Picking up:</h2>
+                <h3 className="ml-6 text-xl font-medium">{rideData?.pickup}</h3>
             </div>
 
             <div className="button mt-10 ml-15">

@@ -11,7 +11,8 @@ import WaitingforDriver from "../components/WaitingforDriver";
 import { SocketContext } from '../context/SocketContext';
 import { userdatacontext } from "../context/Userdata";
 import { useNavigate } from "react-router-dom";
-
+import LiveTracking from "../components/LiveTracking";
+import transitlylogo from '/transitly_logo.svg'
 const Home = () => {
   const [pickup, setpickup] = useState("");
   const [dropoff, setdropoff] = useState("");
@@ -63,6 +64,15 @@ const Home = () => {
       setlookingfordriver(false);
       setride(data);
     })
+
+    useEffect(() => {
+  const handleRideEnded = () => {
+    setwaitingfordriver(false);
+    // Optionally: navigate('/home');
+  };
+  socket.on('ride-ended', handleRideEnded);
+  return () => socket.off('ride-ended', handleRideEnded);
+}, [socket]);
 
    useEffect(() => {
   // ...other socket logic...
@@ -246,19 +256,11 @@ const Home = () => {
   }
   return (
     <div className="h-screen relative overflow-hidden">
-      <img
-        src="https://brandlogos.net/wp-content/uploads/2021/12/uber-brandlogo.net_-512x512.png"
-        alt=""
-        className="w-25 absolute left-1 top-2"
-      />
+      
 
       <div className="h-screen w-screen">
         {/* image for temporary use */}
-        <img
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt=""
-          className="w-full h-full object-cover"
-        />
+        <LiveTracking/>
       </div>
       <div className=" flex flex-col justify-end h-screen   absolute top-0 w-full  rounded-lg ">
         <div className="h-[33%] bg-white p-2.5 relative">

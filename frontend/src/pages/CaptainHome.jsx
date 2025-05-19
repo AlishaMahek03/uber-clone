@@ -10,7 +10,7 @@ import axios from "axios";
 import { CaptainDataContext } from "../context/Captaincontext";
 import { SocketContext } from "../context/SocketContext";
 
-
+import LiveTracking from "../components/LiveTracking";
 
 
 const CaptainHome = () => {
@@ -128,16 +128,12 @@ const CaptainHome = () => {
 
       {/* //The Map  */}
       <div className="h-1/2">
-        <img
-          src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-          alt=""
-          className="w-full h-full object-cover"
-        />
+        <LiveTracking/>
       </div>
       {/* //The below half of the screen */}
       <div className="h-1/2  relative">
         <CaptainDetails captain={captain}/>
-        <div ref={ridepopupref}  className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full">
+        <div ref={ridepopupref}  className="fixed z-10  bottom-0 bg-white w-full h-[70%] p-5 flex flex-col gap-5 translate-y-full">
               <Ridepopup confirmridefunction={confirmridefunction} ride={ride} setconfirmride={setconfirmride} setRidePopup={setRidePopup}/>
         </div>
         <div ref={confirmRideRef}  className="fixed z-10  bottom-0 bg-white w-full h-[90%] p-5 flex flex-col gap-5 translate-y-full">
