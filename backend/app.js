@@ -14,11 +14,7 @@ app.use(cookieParser());
 
 const userRoutes = require("./routes/user.routes");
 const captainRoutes = require("./routes/captain.routes");
-app.use(cors({
-    origin: ['http://localhost:5173', 'https://0mnt41bz-5173.use.devtunnels.ms'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
 app.use('/maps', mapsRoutes);
