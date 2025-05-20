@@ -14,12 +14,22 @@ app.use(cookieParser());
 
 const userRoutes = require("./routes/user.routes");
 const captainRoutes = require("./routes/captain.routes");
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://uber-clone-ptpd.onrender.com',
+    'https://uber-q76d.onrender.com'
+];
+
 app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://uber-clone-ptpd.onrender.com',
-        'https://uber-q76d.onrender.com'
-    ],
+    origin: function(origin, callback) {
+        // allow requests with no origin (like mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
