@@ -15,9 +15,14 @@ app.use(cookieParser());
 const userRoutes = require("./routes/user.routes");
 const captainRoutes = require("./routes/captain.routes");
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://0mnt41bz-5173.use.devtunnels.ms'],
+    origin: [
+        'http://localhost:5173',
+        'https://uber-clone-ptpd.onrender.com',
+        'https://uber-q76d.onrender.com'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
