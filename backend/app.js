@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://your-frontend.onrender.com'
+  'https://uber-clone-4u0q.onrender.com'
 ];
 
 app.use(cors({
