@@ -14,10 +14,10 @@ const LookingforDriver = ({setlookingfordriver, pickup, dropoff}) => {
         alt=""
       />
       <h4 className="text-3xl mt-0 p-2 font-medium">Looking for nearby captains!</h4>
-      <div className="line h-19 absolute top-60 z-30 left-7 rounded-full w-1 bg-gray-700"></div>
+      <div className="line h-19 absolute top-60 z-30 left-9 rounded-full w-1 bg-gray-700"></div>
       <div className="absolute top-50 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 my-5 w-[95%] bg-blue-100">
-        <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-          <i className="ri-map-pin-2-fill text-2xl"></i>
+        <h2 className=" ml-2 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
+          <i className=" ri-square-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
            {pickup}
@@ -25,8 +25,8 @@ const LookingforDriver = ({setlookingfordriver, pickup, dropoff}) => {
       </div>
 
       <div className="absolute top-70 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-5 w-[95%] p-1 bg-blue-100">
-        <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-        <i className="ri-square-fill text-2xl"></i>
+        <h2 className="ml-2 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
+        <i className="ri-map-pin-2-fill  text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">
           {dropoff}

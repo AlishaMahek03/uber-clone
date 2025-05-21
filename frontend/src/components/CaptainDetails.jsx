@@ -30,7 +30,7 @@ const CaptainDetails = ({captain}) => {
         <p className="absolute right-3 top-29 text-xl text-gray-500">★ 4.9</p>
 
 
-        <div className="bg-yellow-500 w-[90%] h-[40%]  absolute top-50 ml-7 rounded-xl flex justify-between gap-5 ">
+        <div className="bg-yellow-500 w-[100%] h-[40%]  absolute top-50  rounded-xl flex justify-between gap-2 ">
           <div>
             <h2 className="px-10 pt-8"><i className="ri-time-line text-5xl text-gray-600"></i></h2>
             <p className="Time text-2xl px-10 font-medium pt-2">10.2</p>

@@ -58,10 +58,10 @@ const LocationPanel = ({
             onClick={() => {
               handlesuggestionclick(elem);
             }}
-            className="flex ml-2 gap-2 mt-5  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-5 w-[95%]"
+            className="flex ml-8 gap-5 mt-5  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-5 w-[85%]"
           >
             
-            <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
+            <h2 className="  ml-3 rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
               <i className="ri-map-pin-2-fill text-2xl"></i>
             </h2>
             <h4 className="w-85 ml-2 text-xl">{elem.description}</h4>

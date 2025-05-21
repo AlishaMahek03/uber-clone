@@ -37,16 +37,15 @@ const CaptainRiding = () => {
         <div className="h-35 w-full flex gap-5   border rounded-t-xl absolute bottom-0 shadow-lg bg-[#eee]">
         <h5  onClick={() => {
             setOpendropoffpanel(true);
-          }} className="absolute top-0 right-88">
+          }} className="absolute top-0 right-48">
           <i className="ri-arrow-up-wide-line text-4xl text-gray-800"></i>
         </h5>
-            <img src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp" alt=""  className="h-25 p-2 border-2 mt-6 ml-2 rounded-xl"/>
             <div className='mt-6 ml-2 w-90'>
-                <h2 className="text-gray-600 font-bold">Picking up:</h2>
-                <h3 className="ml-6 text-xl font-medium">{rideData?.pickup}</h3>
+                <h2 className="text-gray-600 font-bold mb-2">Picking up:</h2>
+                <h3 className="ml-2 text-xl font-medium">{rideData?.pickup}</h3>
             </div>
 
-            <div className="button mt-10 ml-15">
+            <div className="button mt-10 ml-3 mr-2">
               <button  onClick={() => {
             setOpendropoffpanel(true);
           }} className="text-xl px-5 py-3 bg-yellow-500 border rounded-xl font-medium">Finish Ride</button>

@@ -45,14 +45,14 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup, ride }) => {
       >
         <i className="ri-close-circle-fill text-4xl text-gray-300 "></i>
       </h5>
-      <div className="h-170 w-[80%] bg-[#f3efef] mt-8 ml-15 border rounded-lg shadow-lg">
+      <div className="h-170 w-[95%] bg-[#f3efef] mt-18  border rounded-lg shadow-lg">
         <div className="profile flex gap-5">
           <img
             src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp"
             alt=""
             className="h-25 p-2 "
           />
-          <div className="flex justify-between w-[70%] items-center">
+          <div className="flex justify-between w-full items-center">
             <h2 className="text-2xl p-2 font-medium">
               {ride.userId.fullname.firstname +
                 " " +
@@ -62,12 +62,12 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup, ride }) => {
           </div>
         </div>
         <hr />
-        <div className="pickup m-5  h-12 w-[90%] mt-5 ml-5">
+        <div className="pickup mb-10 h-12 w-full mt-5 ml-5">
           <h2 className="text-gray-600">Pickup:</h2>
           <h3 className="ml-2 text-xl font-medium">{ride.pickup}</h3>
         </div>
         <hr />
-        <div className="destination m-10  h-12 w-[90%] mt-5 ml-5">
+        <div className="destination m-10 mb-20  h-12 w-full mt-5 ml-5">
           <h2 className="text-gray-600">Drop off:</h2>
           <h3 className="ml-2 text-xl font-medium">{ride.dropoff}</h3>
         </div>

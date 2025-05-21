@@ -50,25 +50,21 @@ const Riding = () => {
 
         <div className="line bg-black h-20 w-1 absolute top-57 border rounded-lg left-14 z-10"></div>
         <div className="absolute top-50 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 my-3 w-[95%] bg-blue-100">
-        <h2 className="ml-20 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-          <i className="ri-square-fill text-2xl"></i>
-        </h2>
-        <h4 className="w-full ml-2 text-xl">
+        
+        <h4 className="w-full ml-20 text-xl font-bold">
            {rideData?.pickup}
         </h4>
       </div>
 
       <div className="absolute top-70 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-3 w-[95%] p-1 bg-blue-100">
-        <h2 className="ml-20 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-        <i className="ri-map-pin-2-fill  text-2xl"></i>
-        </h2>
-        <h4 className="w-full ml-2 text-xl">
+        
+        <h4 className="w-full ml-20 text-xl font-bold">
            {rideData?.dropoff}
         </h4>
       </div>
-      <div className="flex  items-center justify-around w-full">
-      <button className="ml-30 w-50 absolute top-92 left-10 border border-[#eee] shadow-lg bg-yellow-500  text-black font-bold text-xl px-5 py-2">${rideData?.fare}</button>
-      <button className="ml-70 w-50 absolute top-92  border border-[#eee] shadow-lg bg-green-700 font-semibold text-white text-xl px-5 py-2">Make a payment</button>
+      <div className="flex  items-center justify-start w-full">
+      <button className="ml-2 mb-4 w-50 absolute top-99 border border-[#eee] shadow-lg bg-yellow-500  text-black font-bold text-xl px-5 py-2">${rideData?.fare}</button>
+      <button className="ml-55 mb-4 w-50 absolute top-99  border border-[#eee] shadow-lg bg-green-700 font-semibold text-white text-xl px-5 py-2">Make a payment</button>
       </div>
         
       </div>

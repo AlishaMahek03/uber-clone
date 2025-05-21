@@ -263,7 +263,7 @@ const Home = () => {
         <LiveTracking/>
       </div>
       <div className=" flex flex-col justify-end h-screen   absolute top-0 w-full  rounded-lg ">
-        <div className="h-[33%] bg-white p-2.5 relative">
+        <div className="h-[28%] bg-white p-2.5 relative">
           <h5
             onClick={() => {
               setpanelopen(false);
@@ -304,7 +304,7 @@ const Home = () => {
           </form>
           <button
             onClick={findTrip}
-            className="bg-black text-white px-4 py-2 rounded-lg  w-[50%] ml-35 mt-5"
+            className="bg-black text-white px-4 py-2 rounded-xl  w-[50%] ml-20 mt-7"
           >
             Find Trip
           </button>
@@ -326,7 +326,7 @@ const Home = () => {
       </div>
       <div
         ref={vehiclepanelref}
-        className="fixed z-10 h-[55%]  bottom-0 bg-white w-full p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10 h-[50%]  bottom-0 bg-white w-full p-5 flex flex-col gap-5 translate-y-full"
       >
         <Vehiclepanel
           fare={fare}

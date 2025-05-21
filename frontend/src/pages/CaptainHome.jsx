@@ -133,7 +133,7 @@ const CaptainHome = () => {
       {/* //The below half of the screen */}
       <div className="h-1/2  relative">
         <CaptainDetails captain={captain}/>
-        <div ref={ridepopupref}  className="fixed z-10  bottom-0 bg-white w-full h-[70%] p-5 flex flex-col gap-5 translate-y-full">
+        <div ref={ridepopupref}  className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full">
               <Ridepopup confirmridefunction={confirmridefunction} ride={ride} setconfirmride={setconfirmride} setRidePopup={setRidePopup}/>
         </div>
         <div ref={confirmRideRef}  className="fixed z-10  bottom-0 bg-white w-full h-[90%] p-5 flex flex-col gap-5 translate-y-full">

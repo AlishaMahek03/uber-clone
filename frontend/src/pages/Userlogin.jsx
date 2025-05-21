@@ -60,13 +60,13 @@ const Userlogin = () => {
             className="bg-[#eeeeee] text-xl h-12 w-[90%] text-start px-4"
           />
 
-          <div className="flex items-center justify-center flex-col gap-7">
-          <button className="bg-black text-2xl border  rounded-xl w-[50%] px-5 py-3 text-white mt-2">
+          <div className="flex items-start justify-start flex-col gap-7">
+          <button className="bg-black text-2xl border ml-5 rounded-xl w-[80%] px-5 py-3 text-white mt-2">
             Login
           </button>
 
-          <p className="text-xl font-bold text-center">New here? <Link to='/signup' className="text-blue-500 underline px-3 text-xl">Create new Account!</Link></p>
-          <Link to='/captain-login' className="bg-[#359b68] text-2xl border rounded-xl  w-[50%] px-5 py-3 text-center text-white font-medium mt-2">
+          <p className="text-xl font-bold text-center ml-5">New here? <Link to='/signup' className="text-blue-500 underline px-3 ml-2 text-xl">Create new Account!</Link></p>
+          <Link to='/captain-login' className="bg-[#359b68] text-2xl border rounded-xl  w-[80%] px-5 py-3 text-center text-white font-medium ml-5 mt-2">
               Sign in as Captain
             </Link>
 

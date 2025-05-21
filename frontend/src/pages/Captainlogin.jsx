@@ -70,10 +70,10 @@ const Captainlogin = () => {
                 required
                 className="bg-[#eeeeee] text-xl h-12 w-[90%] text-start px-4"
               />
-              <button className="bg-black text-2xl border rounded-xl ml-40 w-[50%] px-5 py-2 text-white mt-2">
+              <button className="bg-black text-2xl border rounded-xl ml-5 w-[80%] px-5 py-2 text-white mt-2">
                 Login
               </button>
-              <div className="flex justify-center items-center">
+              <div className="flex flex-col  justify-center items-center">
               <p className="text-xl font-bold text-center">Register here?</p>{" "}
               <Link
                 to="/captain-signup"
@@ -84,7 +84,7 @@ const Captainlogin = () => {
               </div>
               <Link
                 to="/login"
-                className="bg-[#e5952b] text-2xl border rounded-xl ml-40 w-[50%] px-5 py-2 text-center text-white font-medium mt-2"
+                className="bg-[#e5952b] text-2xl border rounded-xl ml-5 w-[80%] px-5 py-2 text-center text-white font-medium mt-2"
               >
                 Sign in as User!
               </Link>

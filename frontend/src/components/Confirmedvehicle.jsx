@@ -34,7 +34,7 @@ const Confirmedvehicle = ({
         <i className="ri-arrow-down-wide-line text-4xl text-gray-300 "></i>
       </h5>
       <img
-        className="h-40 w-40 absolute left-40 top-10 "
+        className="h-40 w-40 absolute left-25 top-10 "
         src="https://static.vecteezy.com/system/resources/thumbnails/041/035/565/small_2x/white-car-isolated-on-white-background-vector.jpg"
         alt=""
       />
@@ -45,24 +45,24 @@ const Confirmedvehicle = ({
       </div>
       </div>
       <h4 className="text-3xl p-3 font-medium">Confirm your Ride!</h4>
-      <div className="line h-19 absolute top-60 z-30 left-7 rounded-full w-1 bg-gray-700"></div>
+      <div className="line h-19 absolute top-60 z-30 left-9 rounded-full w-1 bg-gray-700"></div>
       <div className="absolute top-50 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center p-1 my-5 w-[95%] bg-blue-100">
-        <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-          <i className="ri-map-pin-2-fill text-2xl"></i>
+        <h2 className="ml-2 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
+          <i className="ri-square-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">{pickup}</h4>
       </div>
 
       <div className="absolute top-70 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-5 w-[95%] p-1 bg-blue-100">
-        <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
-          <i className="ri-square-fill text-2xl"></i>
+        <h2 className="ml-2 border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
+          <i className=" ri-map-pin-2-fill text-2xl"></i>
         </h2>
         <h4 className="w-85 ml-2 text-xl">{dropoff}</h4>
       </div>
 
       
 
-      <div className="absolute top-96 flex ml-45 gap-2  border-2 border-gray-100 active:border-black rounded-xl justify-center items-center w-[55%] bg-green-700">
+      <div className="absolute top-103 flex  gap-2  border-2 border-gray-100 active:border-black rounded-xl justify-center items-center w-full bg-green-700">
         <button
           onClick={() => {
             setlookingfordriver(true);

@@ -4,15 +4,15 @@ const Ridepopup = ({setRidePopup, setconfirmride, ride, confirmridefunction}) =>
   return (
     <div>
       <div className="relative">
-        <h5 onClick={()=>{setRidePopup(false)}} className="absolute top-3 right-0">
+        <h5 onClick={()=>{setRidePopup(false)}} className="absolute top-0 right-0">
           <i className="ri-arrow-down-wide-line text-4xl text-gray-300 "></i>
         </h5>
 
-        <h4 className="text-3xl p-3 font-medium">
+        <h4 className="text-3xl px-4 font-medium">
           New Ride Available for you!
         </h4>
 
-        <div className="h-100 w-[80%] bg-[#f3efef] mt-8 ml-20 border rounded-lg shadow-lg">
+        <div className="h-100 w-full bg-[#f3efef] mt-8  border rounded-lg shadow-lg relative">
             <div className="profile flex gap-5">
                 <img src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp" alt=""  className="h-25 p-2 "/>
                 <div className="flex justify-between w-[70%] items-center">
@@ -31,7 +31,7 @@ const Ridepopup = ({setRidePopup, setconfirmride, ride, confirmridefunction}) =>
                 <h3 className="ml-2 text-xl font-medium">{ride?.dropoff}</h3>
             </div>
 
-            <div className="buttona h-12 w-[90%] mt-5 ml-5 flex items-center">
+            <div className="buttona h-12 w-[90%] absolute bottom-2 flex items-center">
                 <button onClick={()=>{setRidePopup(false)}} className="m-2 p-2 text-gray-400 ml-50 ">Ignore</button>
                 <button onClick={()=>{setconfirmride(true), confirmridefunction()}}  className="ml-5 bg-yellow-500 p-2 w-1/2 rounded-lg font-bold">Accept</button>
             </div>
