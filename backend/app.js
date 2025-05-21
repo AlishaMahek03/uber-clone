@@ -11,14 +11,14 @@ const rideRoutes = require("./routes/ride.route");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+
+const userRoutes = require("./routes/user.routes");
+const captainRoutes = require("./routes/captain.routes");
 app.use(cors({
-    origin: ['https://uber-bakckend.onrender.com','http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://0mnt41bz-5173.use.devtunnels.ms'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
-const userRoutes = require("./routes/user.routes");
-const captainRoutes = require("./routes/captain.routes");
-
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
 app.use('/maps', mapsRoutes);
