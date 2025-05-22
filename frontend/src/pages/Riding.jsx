@@ -56,7 +56,7 @@ const Riding = () => {
         </h4>
       </div>
 
-      <div className="absolute top-70 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-3 w-[95%] p-1 bg-blue-100">
+      <div className="absolute top-67 flex ml-2 gap-2 mt-0  border-2 border-gray-100 rounded-lg active:border-black justify-center items-center my-3 w-[95%] p-1 bg-blue-100">
         
         <h4 className="w-full ml-20 text-xl font-bold">
            {rideData?.dropoff}

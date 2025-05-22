@@ -34,8 +34,8 @@ const WaitingforDriver = ({setwaitingfordriver, ride}) => {
 
     <h2 className='absolute top-76 font-medium text-2xl text-black'>Location for Pickup & Dropoff :</h2>
     
-    <div className="absolute top-90 flex flex-col  gap-5 mt-0   rounded-lg  justify-start items-center  w-[95%] p-1 ">
-        <div className='flex justify-start  items-center'>
+    <div className="absolute top-90 flex flex-col  gap-5 mt-0   rounded-lg  justify-start items-start  w-[95%] p-1 ">
+        <div className='flex justify-start  items-start'>
         <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
         <i className="ri-square-fill text-2xl"></i>
         </h2>
@@ -43,7 +43,7 @@ const WaitingforDriver = ({setwaitingfordriver, ride}) => {
            {ride?.pickup}
         </h4>
         </div>
-         <div className='flex justify-start  items-center'>
+         <div className='flex justify-start  items-start'>
         <h2 className=" border rounded-full bg-[#eee] flex justify-center items-center h-10 w-10 ">
         <i className="ri-map-pin-2-line text-2xl"></i>
         </h2>

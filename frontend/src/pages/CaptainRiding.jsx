@@ -34,7 +34,7 @@ const CaptainRiding = () => {
         </Link>
       <div className="h-[100%] relative">
         <LiveTracking/>
-        <div className="h-35 w-full flex gap-5   border rounded-t-xl absolute bottom-0 shadow-lg bg-[#eee]">
+        <div className="h-35 w-full flex gap-5  justify-between items-center  border rounded-t-xl absolute bottom-0 shadow-lg bg-[#eee]">
         <h5  onClick={() => {
             setOpendropoffpanel(true);
           }} className="absolute top-0 right-48">
@@ -45,7 +45,7 @@ const CaptainRiding = () => {
                 <h3 className="ml-2 text-xl font-medium">{rideData?.pickup}</h3>
             </div>
 
-            <div className="button mt-10 ml-3 mr-2">
+            <div className="button mt-10 ml-3 mr-2 flex items-center justify-center">
               <button  onClick={() => {
             setOpendropoffpanel(true);
           }} className="text-xl px-5 py-3 bg-yellow-500 border rounded-xl font-medium">Finish Ride</button>
@@ -53,7 +53,7 @@ const CaptainRiding = () => {
             
         </div>
 
-        <div ref={opnedropoffpanelref}  className="fixed z-10  bottom-0 bg-white w-full h-[80%] p-5 flex flex-col gap-5 translate-y-full">
+        <div ref={opnedropoffpanelref}  className="fixed z-10  bottom-0 bg-white w-full h-[89%] p-5 flex flex-col gap-5 translate-y-full">
               <Opendropffpanel rideData={rideData} setOpendropoffpanel={setOpendropoffpanel}/>
         </div>
       </div>

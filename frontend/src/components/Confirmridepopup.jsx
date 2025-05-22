@@ -45,7 +45,7 @@ const Confirmridepopup = ({ setconfirmride, setRidePopup, ride }) => {
       >
         <i className="ri-close-circle-fill text-4xl text-gray-300 "></i>
       </h5>
-      <div className="h-170 w-[95%] bg-[#f3efef] mt-18  border rounded-lg shadow-lg">
+      <div className="h-175 w-[95%] bg-[#f3efef] mt-18  border rounded-lg shadow-lg">
         <div className="profile flex gap-5">
           <img
             src="https://rlv.zcache.ca/anime_girl_christmas_lights_square_sticker-r082a2d1a73944cc29eb60b7128e19b34_0ugmc_8byvr_200.webp"

@@ -71,7 +71,7 @@ const Home = () => {
     // Optionally: navigate('/home');
   };
   socket.on('ride-ended', handleRideEnded);
-  return () => socket.off('ride-ended', handleRideEnded);
+  return () => {socket.off('ride-ended', handleRideEnded)};
 }, [socket]);
 
    useEffect(() => {
@@ -263,7 +263,7 @@ const Home = () => {
         <LiveTracking/>
       </div>
       <div className=" flex flex-col justify-end h-screen   absolute top-0 w-full  rounded-lg ">
-        <div className="h-[28%] bg-white p-2.5 relative">
+        <div className="h-[33%] bg-white p-2.5 relative overflow-hidden">
           <h5
             onClick={() => {
               setpanelopen(false);
@@ -339,7 +339,7 @@ const Home = () => {
 
       <div
         ref={confirvehicleref}
-        className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10  bottom-0 bg-white w-full h-[70%] p-5 flex flex-col gap-5 translate-y-full"
       >
         <Confirmedvehicle
           createRide={createRide}
@@ -355,7 +355,7 @@ const Home = () => {
 
       <div
         ref={lookingfordriverref}
-        className="fixed z-10  bottom-0 bg-white w-full h-[45%] p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10  bottom-0 bg-white w-full h-[55%] p-5 flex flex-col gap-5 translate-y-full"
       >
         <LookingforDriver
           setlookingfordriver={setlookingfordriver}
@@ -368,7 +368,7 @@ const Home = () => {
 
       <div
         ref={waitingfordriverref}
-        className="fixed z-10  bottom-0 bg-white w-full h-[60%] p-5 flex flex-col gap-5 translate-y-full"
+        className="fixed z-10  bottom-0 bg-white w-full h-[70%] p-5 flex flex-col gap-5 translate-y-full"
       >
         <WaitingforDriver ride={ride} setwaitingfordriver={setwaitingfordriver} />
       </div>
